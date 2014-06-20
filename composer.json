@@ -1,0 +1,23 @@
+{
+        "name": "orcsis/yii2-orcsis",
+        "description": "Yii2 Componet for Help Orcsis",
+        "keywords": ["yii", "orcsis", "helper"],
+        "type": "yii2-extension",
+        "license": "Apache-2.0",
+        "support": {
+                "issues": "https://github.com/orcsis/yii2-orcsis/issues",
+                "source": "https://github.com/orcsis/yii2-orcsis"
+        },
+        "authors": [
+                {
+                        "name": "Oliver Carreño",
+                        "email": "orcoliver@gmail.com"
+                }
+        ],
+        "require": {
+                "yiisoft/yii2": "*"
+        },
+        "autoload": {
+                "psr-4": { "orcsis\\": "" }
+        }
+}
