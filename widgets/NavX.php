@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-namespace orcsis;
+namespace orcsis\widgets;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
