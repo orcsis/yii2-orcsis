@@ -13,14 +13,25 @@ use Yii;
 /**
  * Extend \yii\widgets\DetailView for Osusuarios Model
  */
-class DetailViewUser extends \kartik\detail\DetailView
+class DetailView extends \yii\widgets\DetailView
 {
+	/**
+     * Detail View Modes
+     */
+    const MODE_VIEW = 'view';
+    const MODE_EDIT = 'edit';
+    
+	/**
+	 * @var string The mode for DetailView when its initialized
+	 */
+	public $mode = self::MODE_VIEW;
+	
 	/**
      * Renders the main detail view widget
      *
      * @return string the detail view content
      */
-    protected function renderDetailView()
+    /*protected function renderDetailView()
     {
         $rows = [];
         $i = 0;
@@ -32,5 +43,5 @@ class DetailViewUser extends \kartik\detail\DetailView
         return ($this->bootstrap && $this->responsive) ?
             '<div class="table-responsive">' . $output . '</div>' :
             $output;
-    }
+    }*/
 }
