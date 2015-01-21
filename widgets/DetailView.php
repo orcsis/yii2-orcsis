@@ -11,37 +11,68 @@ namespace orcsis\widgets;
 use Yii;
 
 /**
- * Extend \yii\widgets\DetailView for Osusuarios Model
+ * Extend \yii\widgets\DetailView for aditional buttons panel
  */
-class DetailView extends \yii\widgets\DetailView
+class DetailView extends \kartik\detail\DetailView
 {
 	/**
-     * Detail View Modes
-     */
-    const MODE_VIEW = 'view';
-    const MODE_EDIT = 'edit';
-    
-	/**
-	 * @var string The mode for DetailView when its initialized
+	 * @var array Aditional Buttons for panel
+	 * `[
+	 * 	  'options => 'HTML Options',
+	 *    'label' => 'text or HTML Label',
+	 *    'title' => 'title of button (Not displayed)'
+	 * `
 	 */
-	public $mode = self::MODE_VIEW;
+	public $buttons = [];
 	
 	/**
-     * Renders the main detail view widget
-     *
-     * @return string the detail view content
+     * @var string the buttons to show when in view mode. The following tags will be replaced:
+     * - `{view}`: the view button
+     * - `{update}`: the update button
+     * - `{delete}`: the delete button
+     * - `{save}`: the save button
+     * Defaults to `{edit} {delete}`.
      */
-    /*protected function renderDetailView()
+    public $buttons1 = '{tools} {update} {delete}';
+	
+	/**
+     * Renders the buttons for a specific mode
+     *
+     * @param integer $mode
+     * @return string the buttons content
+     */
+    protected function renderButtons($mode = 1)
     {
-        $rows = [];
-        $i = 0;
-        foreach ($this->attributes as $attribute) {
-            $rows[] = $this->renderAttribute($attribute, $i++);
-        }
-        $tag = ArrayHelper::remove($this->options, 'tag', 'table');
-        $output = Html::tag($tag, implode("\n", $rows), $this->options);
-        return ($this->bootstrap && $this->responsive) ?
-            '<div class="table-responsive">' . $output . '</div>' :
-            $output;
-    }*/
+        $buttons = "buttons{$mode}";
+        $ret =  strtr($this->$buttons, [
+            '{view}' => $this->renderButton('view'),
+            '{update}' => $this->renderButton('update'),
+            '{delete}' => $this->renderButton('delete'),
+            '{save}' => $this->renderButton('save'),
+        	'{tools}' => $this->renderTools()
+        ]);
+        //var_dump(json_encode($ret));
+        return $ret;
+    }
+    
+    /**
+     * Renders aditional buttons
+     * @return string
+     */
+    protected function renderTools()
+    {
+    	if(!isset($this->buttons) || count($this->buttons)<1)
+    	{
+    		return '';
+    	}
+    	$buttons = '';
+    	foreach ($this->buttons as $key => $value)
+    	{
+    		$options = isset($value['options']) ? $value['options'] : [];
+    		$label = isset($value['label']) ? $value['label'] : '';
+    		$title = isset($value['title']) ? $value['title'] : '';
+    		$buttons .= ' ' . $this->getDefaultButton('tools',$label,$title,$options);
+    	}
+    	return $buttons;
+    }
 }

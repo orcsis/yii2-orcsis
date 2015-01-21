@@ -24,7 +24,7 @@ class NavX extends \yii\bootstrap\Nav
      * @var string the class name to render the Dropdown items.
      * Defaults to `\kartik\dropdown\DropdownX`.
      */
-    public $dropdownClass = '\orcsis\TreeViewX';
+    public $dropdownClass = '\orcsis\widgets\TreeViewX';
     
     /**
      * @var array the dropdown widget options
