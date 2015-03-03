@@ -71,7 +71,8 @@ class DetailView extends \kartik\detail\DetailView
     		$options = isset($value['options']) ? $value['options'] : [];
     		$label = isset($value['label']) ? $value['label'] : '';
     		$title = isset($value['title']) ? $value['title'] : '';
-    		$buttons .= ' ' . $this->getDefaultButton('tools',$label,$title,$options);
+    		//$buttons .= ' ' . $this->getDefaultButton('tools',$label,$title,$options);
+            $buttons .= isset($value['html']) ? $value['html'] : $this->getDefaultButton('tools',$label,$title,$options);
     	}
     	return $buttons;
     }
