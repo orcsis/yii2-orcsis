@@ -49,6 +49,7 @@ class DetailView extends \kartik\detail\DetailView
             '{update}' => $this->renderButton('update'),
             '{delete}' => $this->renderButton('delete'),
             '{save}' => $this->renderButton('save'),
+            '{reset}' => $this->renderButton('reset'),
         	'{tools}' => $this->renderTools()
         ]);
         //var_dump(json_encode($ret));
